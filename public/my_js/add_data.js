@@ -40,7 +40,7 @@ $("#tambah").on("click", function () {
 });
 var cekRoute = $("#route").text();
 // Script Tambah & Ubah
-if (cekRoute === "bagian") {
+if (cekRoute === "bagian" || cekRoute === "tumbuhan") {
     formGambar();
 } else {
     formBiasa();

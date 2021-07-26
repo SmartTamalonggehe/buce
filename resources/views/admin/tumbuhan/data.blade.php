@@ -3,8 +3,12 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama Bagian</th>
-                <th>Icon</th>
+                <th>Nama Famili</th>
+                <th>Nama Tumbuhan</th>
+                <th>Nama Ilmiah</th>
+                <th>Bagian</th>
+                <th>Khasiat</th>
+                <th>Gambar</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -12,16 +16,20 @@
             @foreach ($data as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->nm_bagian }}</td>
+                    <td>{{ $item->famili->nm_famili }}</td>
+                    <td>{{ $item->nm_tumbuhan }}</td>
+                    <td>{{ $item->nm_ilmiah }}</td>
+                    <td>{{ $item->bagian->nm_bagian }}</td>
+                    <td>{{ $item->khasiat }}</td>
                     <td>
                         <div class="row gallery my-gallery" id="aniimated-thumbnials3" itemscope="">
                             <figure class="col-md-3 col-6 img-hover hover-4" itemprop="associatedMedia" itemscope="">
-                                <a href="{{ asset('storage/' . "$item->icon") }}" itemprop="contentUrl"
+                                <a href="{{ asset('storage/' . "$item->gambar") }}" itemprop="contentUrl"
                                     data-size="1600x950">
-                                    <div><img src="{{ asset('storage/' . "$item->icon") }}" itemprop="thumbnail"
+                                    <div><img src="{{ asset('storage/' . "$item->gambar") }}" itemprop="thumbnail"
                                             alt="Image description"></div>
                                 </a>
-                                <figcaption itemprop="caption description">{{ $item->nm_bagian }}</figcaption>
+                                <figcaption itemprop="caption description">{{ $item->nm_tumbuhan }}</figcaption>
                             </figure>
                         </div>
                     </td>

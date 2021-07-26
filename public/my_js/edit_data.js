@@ -17,6 +17,19 @@ if (route === "bagian") {
         $("#tombolForm").html("Ubah Data");
     }
 }
+if (route === "tumbuhan") {
+    function dataForm(data) {
+        $("#id").val(data.id);
+        $("#famili_id").val(data.famili_id).trigger("change");
+        $("#nm_tumbuhan").val(data.nm_tumbuhan);
+        $("#nm_ilmiah").val(data.nm_ilmiah);
+        $("#bagian_id").val(data.bagian_id).trigger("change");
+        $("#khasiat").val(data.khasiat);
+        $(".tampilModal").modal("show");
+        $("#judul").html("Silahkan Merubah Data");
+        $("#tombolForm").html("Ubah Data");
+    }
+}
 
 $(".btnUbah").on("click", function (e) {
     e.preventDefault();

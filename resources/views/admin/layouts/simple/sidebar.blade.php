@@ -17,7 +17,7 @@
                                 aria-hidden="true"></i></div>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav @yield('dashboard')"
-                            href=""><i data-feather="heart">
+                            href=""><i data-feather="credit-card">
                             </i><span>Dahboard</span></a>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav @yield('famili')"
@@ -25,8 +25,16 @@
                             </i><span>Famili</span></a>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav @yield('bagian')"
-                            href="{{ route('bagian.index') }}"><i data-feather="heart">
+                            href="{{ route('bagian.index') }}"><i data-feather="crop">
                             </i><span>Bagian</span></a>
+                    </li>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav @yield('tumbuhan')"
+                            href="{{ route('tumbuhan.index') }}"><i data-feather="feather">
+                            </i><span>Tumbuhan</span></a>
+                    </li>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav @yield('lokasi')"
+                            href="{{ route('lokasi.index') }}"><i data-feather="map-pin">
+                            </i><span>Lokasi</span></a>
                     </li>
                 </ul>
             </div>
