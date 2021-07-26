@@ -20,8 +20,8 @@
                             href=""><i data-feather="heart">
                             </i><span>Dahboard</span></a>
                     </li>
-                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav @yield('famili')" href=""><i
-                                data-feather="heart">
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav @yield('famili')"
+                            href="{{ route('famili.index') }}"><i data-feather="heart">
                             </i><span>Famili</span></a>
                     </li>
                 </ul>

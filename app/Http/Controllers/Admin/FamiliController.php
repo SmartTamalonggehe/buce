@@ -45,7 +45,7 @@ class FamiliController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Famili::create($request->all());
     }
 
     /**
@@ -67,7 +67,7 @@ class FamiliController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Famili::findOrFail($id);
     }
 
     /**
@@ -79,7 +79,7 @@ class FamiliController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Famili::findOrFail($id)->update($request->all());
     }
 
     /**
@@ -90,6 +90,6 @@ class FamiliController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Famili::destroy($id);
     }
 }

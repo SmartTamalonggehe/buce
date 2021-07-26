@@ -1,3 +1,36 @@
+// Notif
+function myNotif(pesan) {
+    $.notify(
+        {
+            title: "Berhasil",
+            message: pesan,
+        },
+        {
+            type: "primary",
+            allow_dismiss: false,
+            newest_on_top: true,
+            mouse_over: false,
+            showProgressbar: true,
+            spacing: 16,
+            timer: 2000,
+            placement: {
+                from: "top",
+                align: "right",
+            },
+            offset: {
+                x: 30,
+                y: 30,
+            },
+            delay: 1000,
+            z_index: 10000,
+            animate: {
+                enter: "animated bounceIn",
+                exit: "animated bounceInDown",
+            },
+        }
+    );
+}
+
 // Memanggil Modals
 save_method = "add";
 $("#tambah").on("click", function () {
@@ -24,12 +57,10 @@ $("#formKu").on("submit", function (e) {
         type: method,
         data: dataKu,
         success: function (response) {
-            console.log(response);
-
             if (save_method == "add") {
-                toastr.success("Data Berhasil Ditambahkan", "Berhasil !!!");
+                myNotif("Data Berhasil Ditambahkan");
             } else {
-                toastr.warning("Data Berhasil Diubah", "Berhasil !!!");
+                myNotif("Data Berhasil Diubah");
                 aksi = $(".tampilModal").modal("hide");
             }
             $("#formKu").trigger("reset");

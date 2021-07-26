@@ -9,6 +9,7 @@ $folder = 'famili';
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/datatables.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/sweetalert2.css') }}">
 @endsection
 
 @section('style')
@@ -21,11 +22,12 @@ $folder = 'famili';
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="d-inline">Data @yield('judul')</h5>
-                        <button class="btn btn-primary" id="tambah">Tambah Data</button>
-                        <span>Silahkan Menambah, Merubah dan Menghapus Data</span>
+                        <h6 class="d-inline">Data @yield('title')</h6>
+                        <button class="btn btn-primary kanan" id="tambah">Tambah Data</button>
+                        <span>Silahkan Menambah, Merubah dan Menghapus Data @yield('title')</span>
                     </div>
                     <div class="card-body">
+                        <div id="route" style="display: none">famili</div>
                         <div id="tampil"></div>
                     </div>
                 </div>
@@ -35,7 +37,12 @@ $folder = 'famili';
     </div>
 @endsection
 
+@include("admin.$folder.form")
+
 @section('script')
+    <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/sweet-alert/app.js') }}"></script> --}}
     {{-- My Script --}}
     <script src="{{ asset('my_js/load_data.js') }}"></script>
     <script src="{{ asset('my_js/add_data.js') }}"></script>
