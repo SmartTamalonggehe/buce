@@ -1,13 +1,13 @@
 // Memanggil Modals
 save_method = "add";
-$("#tambah").on("click", function() {
+$("#tambah").on("click", function () {
     $("#judul_form").html("From Tambah Data");
     $("#tombolForm").html("Simpan Data");
     $("#formKu").trigger("reset");
     $(".tampilModal").modal("show");
 });
 // Script Tambah & Ubah
-$("#formKu").on("submit", function(e) {
+$("#formKu").on("submit", function (e) {
     e.preventDefault();
     let id = $("#id").val();
     let dataKu = $("#formKu").serialize();
@@ -23,7 +23,7 @@ $("#formKu").on("submit", function(e) {
         url: url,
         type: method,
         data: dataKu,
-        success: function(response) {
+        success: function (response) {
             console.log(response);
 
             if (save_method == "add") {
@@ -34,8 +34,8 @@ $("#formKu").on("submit", function(e) {
             }
             $("#formKu").trigger("reset");
             loadMoreData();
-        }
-    }).fail(function(jqXHR, ajaxOptions, thrownError) {
+        },
+    }).fail(function (jqXHR, ajaxOptions, thrownError) {
         alert("Error. Server tidak merespon");
     });
 });

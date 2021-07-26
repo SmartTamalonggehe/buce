@@ -2,44 +2,41 @@
 $folder = 'famili';
 @endphp
 
-@extends('admin.layouts.default')
-@section('judul', 'Famili')
+@extends('admin.layouts.simple.master')
+@section('title', 'Famili')
+
 @section($folder, 'active')
+
 @section('css')
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('app-assets/vendors/data-tables/css/jquery.dataTables.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('app-assets/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('app-assets/vendors/data-tables/css/select.dataTables.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/data-tables.css') }}">
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/datatables.css') }}">
 @endsection
-@section('content')
-    <div class="row">
-        <div class="col s12">
-            <div class="card">
-                <div class="card-content">
-                    <h4 class="card-title">Scroll - vertical And Horizontal
-                    </h4>
-                    <div class="row">
-                        <div class="col s12">
-                            <div id="route" style="display: none">famili</div>
-                            <div id="tampil"></div>
 
-                        </div>
+@section('style')
+@endsection
+
+@section('content')
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Zero Configuration  Starts-->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="d-inline">Data @yield('judul')</h5>
+                        <button class="btn btn-primary" id="tambah">Tambah Data</button>
+                        <span>Silahkan Menambah, Merubah dan Menghapus Data</span>
+                    </div>
+                    <div class="card-body">
+                        <div id="tampil"></div>
                     </div>
                 </div>
             </div>
+            <!-- Zero Configuration  Ends-->
         </div>
     </div>
 @endsection
 
-{{-- Form --}}
-@include("admin.$folder.form")
 @section('script')
     {{-- My Script --}}
     <script src="{{ asset('my_js/load_data.js') }}"></script>
-    {{-- <script src="{{ asset('my_js/add_data.js') }}"></script> --}}
-
+    <script src="{{ asset('my_js/add_data.js') }}"></script>
 @endsection

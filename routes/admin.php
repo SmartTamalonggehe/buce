@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\LokasiController;
 use App\Http\Controllers\Admin\TumbuhanController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [DashboardController::class,'index'])->name('admin');
+Route::get('/', [DashboardController::class, 'index'])->name('admin');
 
 Route::resource('famili', FamiliController::class);
 Route::resource('bagian', BagianController::class);
