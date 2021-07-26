@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Bagian;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class BagianController extends Controller
 {
@@ -12,9 +15,18 @@ class BagianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $data = Bagian::all();
+
+        if ($request->ajax()) {
+            $view = view('admin.bagian.data', [
+                'data' => $data,
+            ]);
+            return $view;
+        }
+
+        return view('admin.bagian.index');
     }
 
     /**
@@ -35,7 +47,31 @@ class BagianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'icon' => 'required',
+        ]);
+        if ($validator->fails()) {
+            $pesan = [
+                'pesan' => 'Gagal, Icon Tidak Boleh Kosong',
+                'type' => 'danger'
+            ];
+            return response()->json($pesan);
+        }
+
+        $extension = $request->file('icon')->extension();
+        $imgname = date('hmyHis') . '.' . $extension;
+        Storage::putFileAs('public/my_images/icon', $request->file('icon'), $imgname);
+        $save_img = "my_images/icon/$imgname";
+
+        Bagian::create([
+            'nm_bagian' => $request->nm_bagian,
+            'icon' => $save_img,
+        ]);
+        $pesan = [
+            'pesan' => 'Data Berhasil Ditambahkan',
+            'type' => 'primary'
+        ];
+        return response()->json($pesan);
     }
 
     /**
@@ -57,7 +93,7 @@ class BagianController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Bagian::findOrFail($id);
     }
 
     /**
@@ -69,7 +105,24 @@ class BagianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->hasFile('icon')) {
+            // Hapus Icon Lama
+            $img_lama = Bagian::findOrFail($id)->icon;
+
+            Storage::delete("public/$img_lama");
+            $extension = $request->file('icon')->extension();
+            $imgname = date('hmyHis') . '.' . $extension;
+            Storage::putFileAs('public/my_images/icon', $request->file('icon'), $imgname);
+            $save_img = "my_images/icon/$imgname";
+            $data = [
+                'nm_bagian' => $request->nm_bagian,
+                'icon' => $save_img,
+            ];
+        } else {
+            $data = ['nm_bagian' => $request->nm_bagian];
+        }
+
+        Bagian::findOrFail($id)->update($data);
     }
 
     /**
@@ -80,6 +133,8 @@ class BagianController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $img_lama = Bagian::findOrFail($id)->icon;
+        Storage::delete("public/$img_lama");
+        Bagian::destroy($id);
     }
 }

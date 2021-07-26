@@ -15,7 +15,8 @@ class CreateBagianTable extends Migration
     {
         Schema::create('bagian', function (Blueprint $table) {
             $table->id();
-            $table->string('bagian', 1200);
+            $table->string('nm_bagian', 120);
+            $table->string('icon', 150);
             $table->timestamps();
         });
     }

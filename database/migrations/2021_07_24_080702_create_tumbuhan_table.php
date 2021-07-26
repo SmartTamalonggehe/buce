@@ -20,6 +20,7 @@ class CreateTumbuhanTable extends Migration
             $table->string('nm_ilmiah', 120);
             $table->foreignId('bagian_id')->constrained('bagian')->onUpdate('cascade')->onDelete('cascade');
             $table->string('khasiat');
+            $table->string('gambar');
             $table->timestamps();
         });
     }

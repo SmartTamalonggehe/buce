@@ -1,5 +1,5 @@
 @php
-$folder = 'famili';
+$folder = 'bagian';
 @endphp
 
 @extends('admin.layouts.simple.master')
@@ -10,6 +10,8 @@ $folder = 'famili';
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/datatables.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/sweetalert2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/photoswipe.css') }}">
+
 @endsection
 
 @section('style')
@@ -35,6 +37,7 @@ $folder = 'famili';
             <!-- Zero Configuration  Ends-->
         </div>
     </div>
+
 @endsection
 
 @include("admin.$folder.form")
@@ -42,7 +45,6 @@ $folder = 'famili';
 @section('script')
     <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/sweet-alert/app.js') }}"></script> --}}
     {{-- My Script --}}
     <script src="{{ asset('my_js/load_data.js') }}"></script>
     <script src="{{ asset('my_js/add_data.js') }}"></script>

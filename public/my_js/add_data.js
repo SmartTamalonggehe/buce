@@ -1,12 +1,11 @@
 // Notif
-function myNotif(pesan) {
+function myNotif(pesan, type = "primary") {
     $.notify(
         {
-            title: "Berhasil",
             message: pesan,
         },
         {
-            type: "primary",
+            type: type,
             allow_dismiss: false,
             newest_on_top: true,
             mouse_over: false,
@@ -39,34 +38,81 @@ $("#tambah").on("click", function () {
     $("#formKu").trigger("reset");
     $(".tampilModal").modal("show");
 });
+var cekRoute = $("#route").text();
 // Script Tambah & Ubah
-$("#formKu").on("submit", function (e) {
-    e.preventDefault();
-    let id = $("#id").val();
-    let dataKu = $("#formKu").serialize();
-    if (save_method == "add") {
-        url = `${route}`;
-        method = "POST";
-    } else {
-        url = `${route}/:id`;
-        url = url.replace(":id", id);
-        method = "PUT";
-    }
-    $.ajax({
-        url: url,
-        type: method,
-        data: dataKu,
-        success: function (response) {
-            if (save_method == "add") {
-                myNotif("Data Berhasil Ditambahkan");
-            } else {
-                myNotif("Data Berhasil Diubah");
-                aksi = $(".tampilModal").modal("hide");
-            }
-            $("#formKu").trigger("reset");
-            loadMoreData();
-        },
-    }).fail(function (jqXHR, ajaxOptions, thrownError) {
-        alert("Error. Server tidak merespon");
+if (cekRoute === "bagian") {
+    formGambar();
+} else {
+    formBiasa();
+}
+
+function formBiasa() {
+    console.log("form biasa");
+    $("#formKu").on("submit", function (e) {
+        e.preventDefault();
+        let id = $("#id").val();
+        let dataKu = $("#formKu").serialize();
+        if (save_method == "add") {
+            url = `${route}`;
+            method = "POST";
+        } else {
+            url = `${route}/:id`;
+            url = url.replace(":id", id);
+            method = "PUT";
+        }
+        $.ajax({
+            url: url,
+            type: method,
+            data: dataKu,
+            success: function (response) {
+                if (save_method == "add") {
+                    myNotif("Data Berhasil Ditambahkan");
+                } else {
+                    myNotif("Data Berhasil Diubah");
+                    aksi = $(".tampilModal").modal("hide");
+                }
+                $("#formKu").trigger("reset");
+                loadMoreData();
+            },
+        }).fail(function (jqXHR, ajaxOptions, thrownError) {
+            alert("Error. Server tidak merespon");
+        });
     });
-});
+}
+
+function formGambar() {
+    console.log("form gambar");
+    $("#formKu").on("submit", function (e) {
+        e.preventDefault();
+        let id = $("#id").val();
+        let dataKu = new FormData(this);
+        if (save_method == "add") {
+            url = `${route}`;
+        } else {
+            url = `${route}/:id`;
+            url = url.replace(":id", id);
+            dataKu.append("_method", "PUT");
+        }
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: dataKu,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (response) {
+                console.log(response);
+                myNotif(response.pesan, response.type);
+                if (save_method !== "add") {
+                    aksi = $(".tampilModal").modal("hide");
+                }
+                if (response.type !== "danger") {
+                    $("#formKu").trigger("reset");
+                    loadMoreData();
+                }
+            },
+        }).fail(function (jqXHR, ajaxOptions, thrownError) {
+            alert("Error. Server tidak merespon");
+        });
+    });
+}

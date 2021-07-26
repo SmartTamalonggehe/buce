@@ -24,6 +24,10 @@
                             href="{{ route('famili.index') }}"><i data-feather="heart">
                             </i><span>Famili</span></a>
                     </li>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav @yield('bagian')"
+                            href="{{ route('bagian.index') }}"><i data-feather="heart">
+                            </i><span>Bagian</span></a>
+                    </li>
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

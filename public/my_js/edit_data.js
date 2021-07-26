@@ -8,6 +8,15 @@ if (route === "famili") {
         $("#tombolForm").html("Ubah Data");
     }
 }
+if (route === "bagian") {
+    function dataForm(data) {
+        $("#id").val(data.id);
+        $("#nm_bagian").val(data.nm_bagian);
+        $(".tampilModal").modal("show");
+        $("#judul").html("Silahkan Merubah Data");
+        $("#tombolForm").html("Ubah Data");
+    }
+}
 
 $(".btnUbah").on("click", function (e) {
     e.preventDefault();
