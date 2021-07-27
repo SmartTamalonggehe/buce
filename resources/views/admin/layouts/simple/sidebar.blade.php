@@ -17,7 +17,7 @@
                                 aria-hidden="true"></i></div>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav @yield('dashboard')"
-                            href=""><i data-feather="credit-card">
+                            href="{{ route('admin') }}"><i data-feather="credit-card">
                             </i><span>Dahboard</span></a>
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav @yield('famili')"

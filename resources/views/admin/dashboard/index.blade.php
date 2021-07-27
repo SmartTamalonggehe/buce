@@ -20,13 +20,6 @@ $folder = 'dashboard';
             <!-- Zero Configuration  Starts-->
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h5 class="d-inline">Data @yield('judul')</h5>
-                        <button class="btn btn-primary" id="tambah">Tambah Data</button>
-                        <span>Silahkan Menambah, Merubah dan Menghapus Data</span>
-                    </div>
-                    <div class="card-body">
-                    </div>
                 </div>
             </div>
             <!-- Zero Configuration  Ends-->

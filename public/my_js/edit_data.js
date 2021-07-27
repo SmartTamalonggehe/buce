@@ -31,6 +31,19 @@ if (route === "tumbuhan") {
     }
 }
 
+if (route === "lokasi") {
+    function dataForm(data) {
+        $("#id").val(data.id);
+        $("#tumbuhan_id").val(data.tumbuhan_id).trigger("change");
+        $("#lat").val(data.lat);
+        $("#lng").val(data.lng);
+        $("#alamat").val(data.alamat);
+        $(".tampilModal").modal("show");
+        $("#judul").html("Silahkan Merubah Data");
+        $("#tombolForm").html("Ubah Data");
+    }
+}
+
 $(".btnUbah").on("click", function (e) {
     e.preventDefault();
     href = $(this).data("id");

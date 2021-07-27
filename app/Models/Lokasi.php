@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Lokasi extends Model
 {
     use HasFactory;
-    protected $table= 'lokasi';
-    protected $guarded= [];
+    protected $table = 'lokasi';
+    protected $guarded = [];
 
     public function tumbuhan()
     {
-        return $this->belongsTo('tumbuhan');
+        return $this->belongsTo(Tumbuhan::class);
     }
 }

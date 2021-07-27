@@ -32,11 +32,15 @@ function myNotif(pesan, type = "primary") {
 
 // Memanggil Modals
 save_method = "add";
-$("#tambah").on("click", function () {
+function tampilForm() {
     $("#judul_form").html("From Tambah Data");
     $("#tombolForm").html("Simpan Data");
-    $("#formKu").trigger("reset");
     $(".tampilModal").modal("show");
+}
+
+$("#tambah").on("click", function () {
+    tampilForm();
+    $("#formKu").trigger("reset");
 });
 var cekRoute = $("#route").text();
 // Script Tambah & Ubah
@@ -67,6 +71,9 @@ function formBiasa() {
             success: function (response) {
                 if (save_method == "add") {
                     myNotif("Data Berhasil Ditambahkan");
+                    if (cekRoute === "lokasi") {
+                        $(".tampilModal").modal("hide");
+                    }
                 } else {
                     myNotif("Data Berhasil Diubah");
                     aksi = $(".tampilModal").modal("hide");

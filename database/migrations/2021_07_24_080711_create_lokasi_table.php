@@ -16,8 +16,8 @@ class CreateLokasiTable extends Migration
         Schema::create('lokasi', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tumbuhan_id')->constrained('tumbuhan')->onUpdate('cascade')->onDelete('cascade');
-            $table->float('lat', 8, 2);
-            $table->float('lng', 8, 2);
+            $table->float('lat', 12, 8);
+            $table->float('lng', 12, 8);
             $table->string('alamat');
             $table->timestamps();
         });

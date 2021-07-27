@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Lokasi;
+use App\Models\Tumbuhan;
 use Illuminate\Http\Request;
 
 class LokasiController extends Controller
@@ -12,9 +14,22 @@ class LokasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $data = Lokasi::all();
+
+        $tumbuhan = Tumbuhan::orderBy('nm_tumbuhan')->get();
+
+        if ($request->ajax()) {
+            $view = view('admin.lokasi.data', [
+                'data' => $data,
+            ]);
+            return $view;
+        }
+
+        return view('admin.lokasi.index', [
+            'tumbuhan' => $tumbuhan,
+        ]);
     }
 
     /**
@@ -35,7 +50,7 @@ class LokasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Lokasi::create($request->all());
     }
 
     /**
@@ -57,7 +72,7 @@ class LokasiController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Lokasi::findOrFail($id);
     }
 
     /**
@@ -69,7 +84,7 @@ class LokasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Lokasi::findOrFail($id)->update($request->all());
     }
 
     /**
@@ -80,6 +95,6 @@ class LokasiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Lokasi::destroy($id);
     }
 }
