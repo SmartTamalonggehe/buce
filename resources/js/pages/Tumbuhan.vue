@@ -7,22 +7,25 @@
 <script>
 import CardVue from "../components/Card.vue";
 
+import { mapGetters, mapActions } from "vuex";
+
 export default {
     components: {
         CardVue
     },
+
     methods: {
-        getData() {
-            return this.$store.dispatch("setTumbuhan");
-        }
+        ...mapActions(["setTumbuhan"])
     },
+
     mounted() {
-        this.getData();
+        this.setTumbuhan();
     },
+
     computed: {
-        tumbuhan() {
-            return this.$store.getters.getTumbuhan;
-        }
+        ...mapGetters({
+            tumbuhan: "getTumbuhan"
+        })
     }
 };
 </script>

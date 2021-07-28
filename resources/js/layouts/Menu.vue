@@ -17,7 +17,7 @@
             <li class="nav-item header-nav-last-item d-flex align-items-center">
                 <a
                     class="btn btn-brand-03 animated-btn"
-                    href="https://themetags.net/whmcs/?systpl=kohost-professional"
+                    href="/auth/"
                     target="_blank"
                 >
                     <span class="fa fa-user pr-2"></span> Login
