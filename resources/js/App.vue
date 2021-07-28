@@ -3,8 +3,9 @@
         <HeaderVue />
         <div class="main">
             <section class="myPadding gradient-bg"></section>
-
-            <router-view></router-view>
+            <div class="module mt-4">
+                <router-view></router-view>
+            </div>
         </div>
     </div>
 </template>

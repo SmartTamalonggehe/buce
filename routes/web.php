@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('{all}', function () {
     return view('user.index');
-});
+})->where('all', '^(?!api|auth|admin).*$');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

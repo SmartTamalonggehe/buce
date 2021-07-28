@@ -10,7 +10,7 @@
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/png" sizes="16x16">
 
     <!--title-->
-    <title>Cloud Hosting - Modern Web Hosting & WHMCS Template</title>
+    <title>GIS Tumbuhan Obat</title>
 
     <!--build:css-->
     <link rel="stylesheet" href="{{ asset('user/css/main.css') }}">
@@ -74,13 +74,14 @@
     <script src="{{ asset('user/js/vendors/bootstrap.min.js') }}"></script>
     <script src="{{ asset('user/js/vendors/bootstrap-slider.min.js') }}"></script>
     <script src="{{ asset('user/js/vendors/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('user/js/vendors/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('user/js/vendors/countdown.min.js') }}"></script>
     <script src="{{ asset('user/js/vendors/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('user/js/vendors/jquery.rcounterup.js') }}"></script>
     <script src="{{ asset('user/js/vendors/magnific-popup.min.js') }}"></script>
     <script src="{{ asset('user/js/vendors/validator.min.js') }}"></script>
     <script src="{{ asset('user/js/vendors/hs.megamenu.js') }}"></script>
+    <script src="{{ asset('user/js/vendors/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('user/js/vendors/countdown.min.js') }}"></script>
+
     <script src="{{ asset('user/js/app.js') }}"></script>
     <!--endbuild-->
     <script src="{{ mix('js/myVue.js') }}"></script>

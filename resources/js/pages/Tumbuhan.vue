@@ -1,11 +1,30 @@
 <template>
     <div>
-        <h1>Tumbuhan</h1>
+        <CardVue title="Daftar Tumbuhan Obat" :tumbuhan="tumbuhan" />
     </div>
 </template>
 
 <script>
-export default {};
+import CardVue from "../components/Card.vue";
+
+export default {
+    components: {
+        CardVue
+    },
+    methods: {
+        getData() {
+            return this.$store.dispatch("setTumbuhan");
+        }
+    },
+    mounted() {
+        this.getData();
+    },
+    computed: {
+        tumbuhan() {
+            return this.$store.getters.getTumbuhan;
+        }
+    }
+};
 </script>
 
 <style lang="scss" scoped></style>

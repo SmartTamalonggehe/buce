@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Tumbuhan extends Model
 {
     use HasFactory;
-    protected $table= 'tumbuhan';
-    protected $guarded= [];
+    protected $table = 'tumbuhan';
+    protected $guarded = [];
 
     public function bagian()
     {
@@ -18,7 +18,7 @@ class Tumbuhan extends Model
 
     public function famili()
     {
-        return $this->belongsTo(famili::class);
+        return $this->belongsTo(Famili::class);
     }
 
     public function lokasi()
