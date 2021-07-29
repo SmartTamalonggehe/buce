@@ -20,6 +20,7 @@ $folder = 'dashboard';
             <!-- Zero Configuration  Starts-->
             <div class="col-sm-12">
                 <div class="card">
+                    <div id="chart"></div>
                 </div>
             </div>
             <!-- Zero Configuration  Ends-->
@@ -29,5 +30,7 @@ $folder = 'dashboard';
 
 @section('script')
     {{-- My Script --}}
+    <script src="{{ asset('assets/js/chart/apex-chart/apex-chart.js') }}"></script>
+    <script src="{{ asset('my_js/chartTumbuhan.js') }}"></script>
 
 @endsection
