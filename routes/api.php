@@ -21,4 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('tumbuhan', [TumbuhanController::class, 'index'])->name('apiTumbuhan');
+Route::get('detailTumbuhan/{id}', [TumbuhanController::class, 'detail'])->name('apiDetailTumbuhan');
 Route::get('lokasi', [LokasiController::class, 'index'])->name('apiLokasi');
+Route::get('totalBagian', [LokasiController::class, 'totalBagian'])->name('apiTotalBagian');

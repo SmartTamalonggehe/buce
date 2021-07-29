@@ -10,9 +10,9 @@
                 v-for="(item, index) in tumbuhan"
                 :key="index"
             >
-                <a
+                <router-link
                     class="single-blog-article rounded bg-white border d-block mb-4"
-                    href="#"
+                    :to="'/detailTumbuhan/' + item.id"
                 >
                     <div class="blog-img mb-2">
                         <img
@@ -35,7 +35,7 @@
                             {{ item.khasiat }}
                         </p>
                     </div>
-                </a>
+                </router-link>
             </div>
         </div>
     </div>

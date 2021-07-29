@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../pages/Home.vue";
 import Tumbuhan from "../pages/Tumbuhan.vue";
+import DetailTumbuhan from "../pages/DetailTumbuhan.vue";
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes = [
         path: "/tumbuhan",
         name: "Tumbuhan",
         component: Tumbuhan
+    },
+    {
+        path: "/detailTumbuhan/:id",
+        name: "DetailTumbuhan",
+        component: DetailTumbuhan
     }
 ];
 

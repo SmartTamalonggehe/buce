@@ -13,4 +13,9 @@ class TumbuhanController extends Controller
         $data = Tumbuhan::with('famili', 'bagian', 'lokasi')->paginate(10);
         return $data;
     }
+    public function detail($id)
+    {
+        $data = Tumbuhan::with('famili', 'bagian', 'lokasi')->where('id', $id)->first();
+        return $data;
+    }
 }
