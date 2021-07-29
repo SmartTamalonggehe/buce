@@ -2026,6 +2026,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "HereMap",
   props: {
@@ -4389,7 +4391,13 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "widget-title" }, [
-      _c("h6", [_vm._v("Bagian")])
+      _c("h5", { staticClass: " text-center" }, [_vm._v("Legenda")]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("h6", { staticClass: " text-center" }, [
+        _vm._v("Bagian yang Digunakan")
+      ])
     ])
   }
 ]

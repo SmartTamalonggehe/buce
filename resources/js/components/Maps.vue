@@ -38,7 +38,9 @@
                 <!-- Categories widget-->
                 <aside class="widget widget-categories">
                     <div class="widget-title">
-                        <h6>Bagian</h6>
+                        <h5 class=" text-center">Legenda</h5>
+                        <hr />
+                        <h6 class=" text-center">Bagian yang Digunakan</h6>
                     </div>
                     <ul>
                         <li v-for="(item, index) in bagian" :key="index">
