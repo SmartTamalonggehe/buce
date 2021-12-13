@@ -54,16 +54,13 @@
             <div class="row">
                 <div class="col-md-6 col-lg-7">
                     <div class="copyright-wrap small-text">
-                        <p class="mb-0">&copy; ThemeTags Design Agency, All rights reserved</p>
+                        <p class="mb-0">&copy; King Pro P4W, All rights reserved</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-5">
                     <div class="terms-policy-wrap text-lg-right text-md-right text-left">
                         <ul class="list-inline">
-                            <li class="list-inline-item"><a class="small-text" href="terms-condition.html">Terms &
-                                    Condition</a></li>
-                            <li class="list-inline-item"><a class="small-text" href="privacy-policy.html">Privacy
-                                    Policy</a></li>
+                            <li class="list-inline-item"><a class="small-text">Buce</a></li>
                         </ul>
                     </div>
                 </div>
