@@ -2,7 +2,7 @@
 function myNotif(pesan, type = "primary") {
     $.notify(
         {
-            message: pesan,
+            message: pesan
         },
         {
             type: type,
@@ -14,35 +14,37 @@ function myNotif(pesan, type = "primary") {
             timer: 2000,
             placement: {
                 from: "top",
-                align: "right",
+                align: "right"
             },
             offset: {
                 x: 30,
-                y: 30,
+                y: 30
             },
             delay: 1000,
             z_index: 10000,
             animate: {
                 enter: "animated bounceIn",
-                exit: "animated bounceInDown",
-            },
+                exit: "animated bounceInDown"
+            }
         }
     );
 }
-
+var cekRoute = $("#route").text();
 // Memanggil Modals
 save_method = "add";
 function tampilForm() {
     $("#judul_form").html("From Tambah Data");
     $("#tombolForm").html("Simpan Data");
     $(".tampilModal").modal("show");
+    if (cekRoute === "lokasi") {
+        myMarker();
+    }
 }
 
-$("#tambah").on("click", function () {
+$("#tambah").on("click", function() {
     tampilForm();
     $("#formKu").trigger("reset");
 });
-var cekRoute = $("#route").text();
 // Script Tambah & Ubah
 if (cekRoute === "bagian" || cekRoute === "tumbuhan") {
     formGambar();
@@ -52,7 +54,7 @@ if (cekRoute === "bagian" || cekRoute === "tumbuhan") {
 
 function formBiasa() {
     console.log("form biasa");
-    $("#formKu").on("submit", function (e) {
+    $("#formKu").on("submit", function(e) {
         e.preventDefault();
         let id = $("#id").val();
         let dataKu = $("#formKu").serialize();
@@ -68,7 +70,7 @@ function formBiasa() {
             url: url,
             type: method,
             data: dataKu,
-            success: function (response) {
+            success: function(response) {
                 if (save_method == "add") {
                     myNotif("Data Berhasil Ditambahkan");
                     if (cekRoute === "lokasi") {
@@ -80,8 +82,8 @@ function formBiasa() {
                 }
                 $("#formKu").trigger("reset");
                 loadMoreData();
-            },
-        }).fail(function (jqXHR, ajaxOptions, thrownError) {
+            }
+        }).fail(function(jqXHR, ajaxOptions, thrownError) {
             alert("Error. Server tidak merespon");
         });
     });
@@ -89,7 +91,7 @@ function formBiasa() {
 
 function formGambar() {
     console.log("form gambar");
-    $("#formKu").on("submit", function (e) {
+    $("#formKu").on("submit", function(e) {
         e.preventDefault();
         let id = $("#id").val();
         let dataKu = new FormData(this);
@@ -107,7 +109,7 @@ function formGambar() {
             contentType: false,
             cache: false,
             processData: false,
-            success: function (response) {
+            success: function(response) {
                 console.log(response);
                 myNotif(response.pesan, response.type);
                 if (save_method !== "add") {
@@ -117,8 +119,8 @@ function formGambar() {
                     $("#formKu").trigger("reset");
                     loadMoreData();
                 }
-            },
-        }).fail(function (jqXHR, ajaxOptions, thrownError) {
+            }
+        }).fail(function(jqXHR, ajaxOptions, thrownError) {
             alert("Error. Server tidak merespon");
         });
     });

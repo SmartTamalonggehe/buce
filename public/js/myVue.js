@@ -4736,7 +4736,7 @@ var render = function() {
       _c("MapsVue", {
         ref: "map",
         attrs: {
-          apiKey: "6KIMp7_idrydSKZJ02qGssW0-W8bJ_uDcxL28Up4MaU",
+          apiKey: "jj818Cy3SQHomd-JH-7QDZjgn_MDWZt63FYuY8Ih8Uw",
           lokasi: _vm.lokasi,
           bagian: _vm.totalBagian
         }

@@ -1,92 +1,98 @@
-let platform = new H.service.Platform({
-    apikey: "6KIMp7_idrydSKZJ02qGssW0-W8bJ_uDcxL28Up4MaU",
+const apiToken =
+    "pk.eyJ1Ijoic21hcnRzcGFydGFjdXMiLCJhIjoiY2t4czY1OGg4MDlsbjJ2bzV5YWFkamRnciJ9.sTJtoJNj2uWpIDCv85pEyQ";
+
+mapboxgl.accessToken = apiToken;
+const map = new mapboxgl.Map({
+    container: "peta", // container ID
+    style: "mapbox://styles/mapbox/satellite-v9", // style URL
+    center: [0, 0],
+    zoom: 0.6
 });
 
-let defaultLayers = platform.createDefaultLayers();
+function myMaps(koordinat) {
+    map.setCenter(koordinat);
+    map.setZoom(13);
 
-let map = new H.Map(
-    document.getElementById("peta"),
-    defaultLayers.vector.normal.map,
-    {
-        center: { lng: 140.6689605837627, lat: 2.5894873665909985 },
+    const marker = new mapboxgl.Marker({
+        draggable: true
+    })
+        .setLngLat(koordinat)
+        .addTo(map);
+
+    function onDragEnd() {
+        const poss = marker.getLngLat();
+        $("#lat").val(poss.lat);
+        $("#lng").val(poss.lng);
+        tampilForm();
     }
-);
 
-// Deteksi Lokasi
-navigator.geolocation.getCurrentPosition(berhasil, error);
+    marker.on("dragend", onDragEnd);
+}
+map.addControl(new mapboxgl.FullscreenControl());
+map.addControl(new mapboxgl.NavigationControl());
 
-function berhasil(point) {
-    let lat = point.coords.latitude;
-    let lng = point.coords.longitude;
-    point.coords.accuracy;
-    let coords = { lat: lat, lng: lng };
-    map.setCenter(coords);
-    map.setZoom(12);
+// Ambil titik koordinat
+const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+};
 
-    let marker = new H.map.Marker(coords);
+navigator.geolocation.getCurrentPosition(success, error, options);
 
-    // Add the marker to the map:
-    map.addObject(marker);
-    marker.draggable = true;
-    // when starting to drag a marker object:
-    map.addEventListener(
-        "dragstart",
-        function (ev) {
-            var target = ev.target,
-                pointer = ev.currentPointer;
-            if (target instanceof H.map.Marker) {
-                var targetPosition = map.geoToScreen(target.getGeometry());
-                target["offset"] = new H.math.Point(
-                    pointer.viewportX - targetPosition.x,
-                    pointer.viewportY - targetPosition.y
-                );
-                behavior.disable();
-            }
-        },
-        false
-    );
-    // when dragging has completed
-    map.addEventListener(
-        "dragend",
-        function (ev) {
-            var target = ev.target;
-            if (target instanceof H.map.Marker) {
-                behavior.enable();
-                $("#lat").val(target.b.lat);
-                $("#lng").val(target.b.lng);
-                tampilForm();
-            }
-        },
-        false
-    );
-
-    // Listen to the drag event and move the position of the marker
-    // as necessary
-    map.addEventListener(
-        "drag",
-        function (ev) {
-            var target = ev.target,
-                pointer = ev.currentPointer;
-            if (target instanceof H.map.Marker) {
-                target.setGeometry(
-                    map.screenToGeo(
-                        pointer.viewportX - target["offset"].x,
-                        pointer.viewportY - target["offset"].y
-                    )
-                );
-                //   console.log(target.b);
-            }
-        },
-        false
-    );
+function success(titik) {
+    const koordinat = [titik.coords.longitude, titik.coords.latitude];
+    myMaps(koordinat);
 }
 
-function error(err) {
-    alert(err);
+function error() {
+    alert(`Mohon Untuk Mengijinkan Mengakses Lokasi Anda`);
 }
 
-// Group Marker
+const myData = () => {
+    return fetch("/api/lokasi").then(response =>
+        response.json().then(response => response)
+    );
+};
 
-let ui = H.ui.UI.createDefault(map, defaultLayers);
-window.addEventListener("resize", () => map.getViewPort().resize());
-let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+const myMarker = async () => {
+    const data = await myData();
+    data.forEach(el => {
+        let koordinat = [el.lng, el.lat];
+        // create the popup
+        const popup = new mapboxgl.Popup({
+            offset: 25
+        }).setHTML(
+            `<table class="black">
+                <tbody>
+                    <tr>
+                        <td colspan="3"><h6 class="black text-center">${el.tumbuhan.nm_tumbuhan}</h6></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-center">${el.alamat}</td>
+                    </tr>
+                </tbody>
+            </table>`
+        );
+
+        // create DOM element for the marker
+        const mk = document.createElement("div");
+        mk.className = "marker";
+        mk.style.backgroundImage = `url(/storage/${el.tumbuhan.bagian.icon})`;
+
+        // create the marker
+        new mapboxgl.Marker(mk)
+            .setLngLat(koordinat)
+            .setPopup(popup) // sets a popup on this marker
+            .addTo(map);
+    });
+};
+
+myMarker();
+
+$("#fresh").on("click", function() {
+    console.log("click");
+    map.on("load", () => {
+        console.log("A load event occurred.");
+    });
+});
