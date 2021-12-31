@@ -22,6 +22,7 @@ export default new Vuex.Store({
         },
         setLokasi: (state, lokasi) => {
             state.lokasi = lokasi;
+            state.loading = true;
         },
         setTotalBagian: (state, totalBagian) => {
             state.totalBagian = totalBagian;

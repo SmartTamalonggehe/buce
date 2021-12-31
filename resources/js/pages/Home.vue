@@ -2,16 +2,17 @@
   <div class="container">
     <MapsVue
       ref="map"
-      apiKey="jj818Cy3SQHomd-JH-7QDZjgn_MDWZt63FYuY8Ih8Uw"
+      apiKey="pk.eyJ1Ijoic21hcnRzcGFydGFjdXMiLCJhIjoiY2t4czY1OGg4MDlsbjJ2bzV5YWFkamRnciJ9.sTJtoJNj2uWpIDCv85pEyQ"
       :lokasi="lokasi"
       :bagian="totalBagian"
+      :loading="loading"
     />
   </div>
 </template>
 
 <script>
 import MapsVue from "../components/Maps.vue";
-import { mapGetters, mapActions } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
   components: {
@@ -19,13 +20,14 @@ export default {
   },
   mounted() {
     let map = this.$refs.map;
-    console.log(map);
+    // console.log(map);
   },
   computed: {
     ...mapGetters({
       lokasi: "getLokasi",
       totalBagian: "getTotalBagian",
     }),
+    ...mapState(["loading", "errorMessage"]),
   },
   methods: {
     ...mapActions(["setLokasi", "setTotalBagian"]),
