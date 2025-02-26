@@ -5120,7 +5120,7 @@ var render = function() {
         ref: "map",
         attrs: {
           apiKey:
-            "pk.eyJ1Ijoic21hcnRzcGFydGFjdXMiLCJhIjoiY2t4czY1OGg4MDlsbjJ2bzV5YWFkamRnciJ9.sTJtoJNj2uWpIDCv85pEyQ",
+            "pk.eyJ1Ijoic21hcnRzcGFydGFjdXMiLCJhIjoiY203bHNlYjFmMGRkaDJqcjB3cHdrNG5tdyJ9.KBLA7WDqjhe5YCQ2oddJ7Q",
           lokasi: _vm.lokasi,
           bagian: _vm.totalBagian,
           loading: _vm.loading
